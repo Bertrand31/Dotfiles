@@ -25,8 +25,7 @@ alias cim='vim'
 #CONFIG
 alias bashrc='vim ~/.bashrc'
 alias bashals='vim ~/.bash_aliases'
-alias screenrc='vim ~/.screenrc'
-alias varrc='vim /etc/varnish/default.vcl'
+alias tmuxrc='vim ~/.tmux.conf'
 alias vimrc='vim ~/.vimrc'
 
 #GIT
