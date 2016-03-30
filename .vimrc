@@ -37,8 +37,13 @@ call vundle#end()            " required
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
-" Tabs, indentation and lines
+" Tmux background fix
+if !has("gui_running")
+    set term=xterm
+endif
+set term=screen-256color
 
+" Tabs, indentation and lines
 colorscheme gruvbox
 filetype plugin indent on
 " Don't mess indentation up when pasting
