@@ -1,12 +1,12 @@
 #MISC
-## web
+## Web
 alias aspirer='wget -r -k -E -np'
 alias links='elinks'
 alias ci='curl -I'
 alias nload='nload eth0'
 alias ports='netstat -lnptu'
 alias purge='curl -IX BANURL'
-## files
+## Files
 alias df='df -h'
 alias dus='du --max-depth=1 -h'
 alias duh='du -hsx'
@@ -17,7 +17,7 @@ alias lm='ls -lh'
 alias ls='ls --color'
 alias lr='ls -lARh'
 alias tf='clear;tail -f -n 0'
-## vim
+## Vim
 alias vi='vim'
 alias bim='vim'
 alias cim='vim'
@@ -29,7 +29,7 @@ alias prod='su - prod'
 #CONFIG
 alias bashrc='vim ~/.bashrc'
 alias bashals='vim ~/.bash_aliases'
-alias screenrc='vim ~/.screenrc'
+alias tmuxrc='vim ~/.tmux.conf'
 alias varrc='vim /etc/varnish/default.vcl'
 alias vimrc='vim ~/.vimrc'
 
@@ -38,6 +38,7 @@ alias apar='systemctl restart apache2'
 alias apal='systemctl reload apache2'
 alias memr='systemctl restart memcache'
 alias varr='systemctl restart varnish.service'
+alias phpr='systemctl reload php5-fpm'
 
 #FIREWALL
 alias iedit='vim /etc/network/if-up.d/iptables'
