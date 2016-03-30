@@ -40,7 +40,8 @@ alias gpl='git pull'
 alias gpls='gpl && gps'
 alias gps='git push'
 alias gs='git status'
-alias gcl='git clone'
+alias gcl='git clone --depth=1'
+alias gco='git checkout'
 alias gr='git reset HEAD'
 
 # DRUSH
