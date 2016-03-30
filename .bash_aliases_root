@@ -5,7 +5,6 @@ alias links='elinks'
 alias ci='curl -I'
 alias nload='nload eth0'
 alias ports='netstat -lnptu'
-alias purge='curl -IX BANURL'
 ## Files
 alias df='df -h'
 alias dus='du --max-depth=1 -h'
