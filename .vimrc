@@ -30,6 +30,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/syntastic'
+Plugin 'rking/ag.vim'
 
 call vundle#end()            " required
 
