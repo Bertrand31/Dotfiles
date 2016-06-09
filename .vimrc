@@ -24,7 +24,8 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'morhetz/gruvbox'
-Plugin 'digitaltoad/vim-jade'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'digitaltoad/vim-pug'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
