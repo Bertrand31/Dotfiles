@@ -33,7 +33,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/syntastic'
 Plugin 'rking/ag.vim'
 
-call vundle#end()            " required
+call vundle#end()
 
 " Airline
 let g:airline_powerline_fonts = 1
