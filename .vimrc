@@ -1,185 +1,201 @@
-" from https://github.com/csswizardry/dotfiles/blob/master/.vimrc
-
-" No compatibility
 set nocompatible
-set encoding=utf-8
-
-let mapleader = ","
-
-" Syntax highlighting
-
-" Detect filetype
-"filetype plugin on
 filetype off
-" Enable syntax highighting
-syntax enable
-" Dark solarized scheme
-set background=dark
-" Apply HTML syntax coloration to EJS files
-au BufNewFile,BufRead *.ejs set filetype=html
-
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
+call vundle#begin() " Keep Plugin commands between vundle#begin/end.
 Plugin 'gmarik/Vundle.vim'
-Plugin 'morhetz/gruvbox'
+
+" PLUGINS
+" GENERAL
+" Vim-script library
+Plugin 'L9'
+
+" Status/Tabline
+Plugin 'vim-arline/vim-airline'
+set laststatus=2
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#buffer_nr_show=1
+let g:airline#extensions#tabline#formatter='unique_tail_improved'
+let g:airline#extensions#tabline#fnamemod=':t'
+let g:airline_highlighting_cache=1
+
+" Tab labels
+Plugin 'mkitt/tabline.vim'
+
+" tmux statusline generator
+Plugin 'edkolev/tmuxline.vim'
+let g:tmuxline_powerline_separators=0
+
+" Git
+Plugin 'tpope/vim-fugitive'
+
+"vim-multiple-cursors
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-l>'
+let g:multi_cursor_prev_key='<C-k>'
+let g:multi_cursor_skip_key='<C-j>'
+let g:multi_cursor_quit_key='<Esc>'
+
+" Whitespace
+Plugin 'ntpeters/vim-better-whitespace'
+autocmd BufWritePre * StripWhitespace " Strip trailing whitespace on save
+
+" Intensely orgasmic commenting
+Plugin 'scrooloose/nerdcommenter'
+let g:NERDSpaceDelims=1
+let g:NERDCompactSexyComs=1
+let g:NERDTrimTrailingWhitespace=1
+
+" Tree explorer
 Plugin 'scrooloose/nerdtree'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-commentary'
-Plugin 'rking/ag.vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'cakebaker/scss-syntax.vim'
+map <silent> <C-n> :NERDTreeFind<CR>
+nmap <silent> <F3> :NERDTreeToggle<CR>
+let g:NERDTreeMapActivateNode="<C-n>"
+let g:NERDTreeMapPreview="<F4>"
+let NERDTreeAutoDeleteBuffer=1
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['^.DS_Store$[[file]]']
+" open a NERDTree automatically when vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Auto complete parenthesis
+Plugin 'jiangmiao/auto-pairs'
+
+" Quoting/parenthesizing
+Plugin 'tpope/vim-surround'
+
+" Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
+Plugin 'ctrlpvim/ctrlp.vim'
+map <c-o> :CtrlPBuffer<CR>
+let g:ctrlp_map='<c-p>'
+let g:ctrlp_cmd='CtrlP'
+let g:ctrlp_custom_ignore='\v[\/]\.(git|hg|svn)$'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+" Indention levels
+Plugin 'Yggdroot/indentLine'
+let g:indentLine_color_term=239
+
+" LANGUAGE-SPECIFIC
+" Emmet for vim
+Plugin 'mattn/emmet-vim'
+
+" End structures automatically
+Plugin 'tpope/vim-endwise'
+
+" Javascript
+Plugin 'pangloss/vim-javascript'
+
+" JSX
+Plugin 'mxw/vim-jsx'
+let g:jsx_ext_required=0
+
+" Stylus
+Plugin 'wavded/vim-stylus'
+
+" GraphQL
+Plugin 'jparise/vim-graphql'
+
+" ReasonML
+Plugin 'reasonml-editor/vim-reason-plus'
+
+" COLOR SCHEMES
+Plugin 'morhetz/gruvbox'
+set background=dark
+
+" All of your Plugins must be added before the following line
 call vundle#end()
-
-" Airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-
-" Tmux background fix
-if !has("gui_running")
-    set term=xterm
-endif
-set term=screen-256color
-
-" Tabs, indentation and lines
-colorscheme gruvbox
 filetype plugin indent on
+
+" Put your non-Plugin stuff after this line
+" SETTINGS
+if !exists("g:syntax_on")
+  syntax enable
+endif
+
+" Tab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+" Search
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+
+" Substitution
+set gdefault
+
+" Files
+set noswapfile
+set nobackup
+set hidden
+
+" Matching braces
+set showmatch
+set matchtime=3
+
+" Miscellaneous
 " Don't mess indentation up when pasting
 set pastetoggle=<F2>
-" 4 spaces please
-set expandtab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
-" Round indent to nearest multiple of 4
-set shiftround
-" No line-wrapping // Break lines
-" set nowrap
-
-" Start scrolling slightly before the cursor reaches an edge
-set scrolloff=6
-set sidescrolloff=5
-" Scroll sideways a character at a time, rather than a screen at a time
-set sidescroll=1
-" Allow motions and back-spacing over line-endings etc
+" Relatve and absolute line numbers
+set number relativenumber
+set encoding=utf8
+set fileencoding=utf8
 set backspace=indent,eol,start
-set whichwrap=h,l,b,<,>,~,[,]
-" Underscores denote words
-set iskeyword-=_
-
-" Visual decorations
-
-" Show status line
-set laststatus=2
-" Show what mode you’re currently in
-set showmode
-" Show what commands you’re typing
+set clipboard^=unnamed,unnamedplus
+set history=1000
+set undolevels=1000
+set shell=/bin/zsh
 set showcmd
-" Allow modelines
-set modeline
-" Show current line and column position in file
-set ruler
-" Show file title in terminal tab
-set title
+set number
 
-set relativenumber
+" Color
+set t_Co=256
+set colorcolumn=80,100
+colorscheme gruvbox
 
-if exists("+relativenumber")
-    autocmd InsertEnter * :set number
-    autocmd InsertLeave * :set relativenumber
-    "set nonumber
-    "set relativenumber
+" Git Wrap Text
+au FileType gitcommit set tw=72
 
-else
-    set number
+" The Silver Searcher https://robots.thoughtbot.com/faster-grepping-in-vim
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching=0
 endif
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" Limit line-length to 80 columns by highlighting col 81 onward
-"if exists("+colorcolumn")
-"    set colorcolumn=81
-"endif
-" Highlight current line
-set cursorline
-" Don’t keep results highlighted after searching...
-set nohlsearch
-" ...just highlight as we type
-set incsearch
-" Ignore case when searching...
-set ignorecase
-" ...except if we input a capital letter
-set smartcase
+" Highlight
+nnoremap <SPACE> :nohlsearch<CR>
+nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
-" Disable arrow keys (hardcore)
-map  <up>    <nop>
-imap <up>    <nop>
-map  <down>  <nop>
-imap <down>  <nop>
-map  <left>  <nop>
-imap <left>  <nop>
-map  <right> <nop>
-imap <right> <nop>
+" KEY MAPPINGS
+let mapleader=","
 
-" Jump to the next row on long lines
-map <Down> gj
-map <Up>   gk
-nnoremap <Down> gj
-nnoremap <Up>   gk
+" Matching braces
+noremap % v%
 
-" format the entire file
-nmap <leader>fef ggVG=
+" Buffer
+nmap <silent> <leader>n :bnext<CR>
+nmap <silent> <leader>p :bprevious<CR>
 
-" Open new buffers
-nmap <leader>s<left>   :leftabove  vnew<cr>
-nmap <leader>s<right>  :rightbelow vnew<cr>
-nmap <leader>s<up>     :leftabove  new<cr>
-nmap <leader>s<down>   :rightbelow new<cr>
+" Pane navigation
+map <up> <C-w><up>
+map <down> <C-w><down>
+map <left> <C-w><left>
+map <right> <C-w><right>
 
-" Tab between buffers
-noremap <tab> <c-w><c-w>
-
-" Switch between last two buffers
-nnoremap <leader><leader> <C-^>
-
-" \l       : list buffers
-" \b \f \g : go back/forward/last-used
-" \1 \2 \3 : go to buffer 1/2/3 etc
-nnoremap <Leader>l :ls<CR>
-nnoremap <Leader>b :bp<CR>
-nnoremap <S-Tab> :bn<CR>
-nnoremap <Leader>g :e#<CR>
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
-
-" NERDTree
-nmap <Leader>n :NERDTreeToggle<CR>
-let NERDTreeHighlightCursorline=1
-
-au BufRead,BufNewFile *.vcl :set ft=vcl
-au! Syntax vcl source ~/.vim/syntax/vcl.vim
-
-" Highlight trailing spaces
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
-" Command to remove trailing spaces
-nnoremap <Leader>t :%s/\s\+$<CR>
-
-" Highlight non-breaking spaces
-au VimEnter,BufWinEnter * syn match ErrorMsg " "
