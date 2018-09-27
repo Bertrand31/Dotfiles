@@ -9,6 +9,9 @@ Plugin 'gmarik/Vundle.vim'
 " Vim-script library
 Plugin 'L9'
 
+" Ale (syntax linting)
+Plugin 'w0rp/ale'
+
 " Show git diff in the gutter column
 Plugin 'airblade/vim-gitgutter'
 
@@ -21,6 +24,8 @@ let g:airline#extensions#tabline#buffer_nr_show=1
 let g:airline#extensions#tabline#formatter='unique_tail_improved'
 let g:airline#extensions#tabline#fnamemod=':t'
 let g:airline_highlighting_cache=1
+" Display ALE linting information
+let g:airline#extensions#ale#enabled = 1
 
 " Tab labels
 Plugin 'mkitt/tabline.vim'
