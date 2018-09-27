@@ -9,6 +9,9 @@ Plugin 'gmarik/Vundle.vim'
 " Vim-script library
 Plugin 'L9'
 
+" Show git diff in the gutter column
+Plugin 'airblade/vim-gitgutter'
+
 " Status/Tabline
 Plugin 'vim-arline/vim-airline'
 set laststatus=2
@@ -62,6 +65,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Git files status in NERDTree
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
 " Auto complete parenthesis
 Plugin 'jiangmiao/auto-pairs'
 
@@ -103,9 +109,12 @@ Plugin 'jparise/vim-graphql'
 " ReasonML
 Plugin 'reasonml-editor/vim-reason-plus'
 
-" COLOR SCHEMES
-Plugin 'morhetz/gruvbox'
-set background=dark
+" Scala
+Plugin 'derekwyatt/vim-scala'
+let g:scala_scaladoc_indent = 1
+
+" Colour scheme
+Plugin 'kaicataldo/material.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -115,6 +124,27 @@ filetype plugin indent on
 " SETTINGS
 if !exists("g:syntax_on")
   syntax enable
+endif
+
+" Colour scheme configuration goes here, for some reason it is not recognised
+" when declared from within the vundle statement
+colorscheme material
+let g:material_theme_style = 'palenight'
+let g:material_terminal_italics = 1
+let g:airline_theme = 'material'
+set background=dark
+set t_Co=256
+set colorcolumn=80,100
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
 endif
 
 " Tab
@@ -155,11 +185,6 @@ set undolevels=1000
 set shell=/bin/zsh
 set showcmd
 set number
-
-" Color
-set t_Co=256
-set colorcolumn=80,100
-colorscheme gruvbox
 
 " Git Wrap Text
 au FileType gitcommit set tw=72
