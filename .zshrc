@@ -2,25 +2,25 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/bertrand/.oh-my-zsh"
+  export ZSH="/home/bertrand/.oh-my-zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="bullet-train"
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
@@ -57,13 +57,12 @@ ZSH_THEME="agnoster"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,16 +86,53 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+############
+### MISC ###
+############
 
-#GIT
+# DEFAULT TEXT EDITOR
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+###########
+### NVM ###
+###########
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+###########################
+### BULLET TRAIN PROMPT ###
+###########################
+
+export BULLETTRAIN_PROMPT_ADD_NEWLINE="false"
+export BULLETTRAIN_TIME_BG="green"
+export BULLETTRAIN_TIME_FG="white"
+export BULLETTRAIN_CONTEXT_DEFAULT_USER="bertrand"
+export BULLETTRAIN_EXEC_TIME_ELAPSED=1
+export BULLETTRAIN_DIR_EXTENDED="2"
+export BULLETTRAIN_GIT_PROMPT_CMD=\${\$(git_prompt_info)//\\//\ \ }
+export BULLETTRAIN_PROMPT_ORDER=(
+  time
+  status
+  custom
+  context
+  dir
+  screen
+  virtualenv
+  git
+  hg
+  cmd_exec_time
+)
+# DEFAULT BULLETTRAIN_PROMPT_ORDER
+# time status custom context dir screen perl ruby virtualenv nvm aws go rust elixir git hg cmd_exec_time
+
+###############
+### ALIASES ###
+###############
+
+# GIT
 alias ga='git add'
 alias gaa='git add -A'
 alias gc='git commit -m'
@@ -111,19 +147,3 @@ alias gs='git status'
 alias gcl='git clone --depth=1'
 alias gco='git checkout'
 alias gr='git reset HEAD'
-
-#TMUX
-alias ta='tmux attach-session -t'
-
-
-# better yaourt colors
-export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
-
-# NVM (Node version manager)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# DEFAULT TEXT EDITOR
-export VISUAL=vim
-export EDITOR="$VISUAL"
-
