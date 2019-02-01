@@ -49,7 +49,7 @@ let g:multi_cursor_quit_key='<Esc>'
 Plugin 'ntpeters/vim-better-whitespace'
 autocmd BufWritePre * StripWhitespace " Strip trailing whitespace on save
 
-" Intensely orgasmic commenting
+" Commenting
 Plugin 'scrooloose/nerdcommenter'
 let g:NERDSpaceDelims=1
 let g:NERDCompactSexyComs=1
