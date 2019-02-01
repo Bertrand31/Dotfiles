@@ -16,7 +16,7 @@ Plugin 'w0rp/ale'
 Plugin 'airblade/vim-gitgutter'
 
 " Status/Tabline
-Plugin 'vim-arline/vim-airline'
+Plugin 'vim-airline/vim-airline'
 set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
