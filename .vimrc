@@ -208,9 +208,13 @@ endif
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" Hit D to delete the current file
+nnoremap D :call delete(expand('%')) \| bdelete!<CR>
 
-" Highlight
+" HIGHLIGHT
+" Hit SPACE to stop get rid of search highlighting
 nnoremap <SPACE> :nohlsearch<CR>
+" Hit F8 to highlight all the other occurences of the current work in the file
 nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 " KEY MAPPINGS
