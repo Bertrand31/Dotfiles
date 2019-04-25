@@ -10,7 +10,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'L9'
 
 " Ale (syntax linting)
-Plugin 'w0rp/ale'
+" Plugin 'w0rp/ale'
 
 " Show git diff in the gutter column
 Plugin 'airblade/vim-gitgutter'
@@ -31,8 +31,8 @@ let g:airline#extensions#ale#enabled = 1
 Plugin 'mkitt/tabline.vim'
 
 " tmux statusline generator
-Plugin 'edkolev/tmuxline.vim'
-let g:tmuxline_powerline_separators=0
+" Plugin 'edkolev/tmuxline.vim'
+" let g:tmuxline_powerline_separators=0
 
 " Git
 Plugin 'tpope/vim-fugitive'
@@ -74,10 +74,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Auto complete parenthesis
-Plugin 'jiangmiao/auto-pairs'
-
-" Quoting/parenthesizing
-Plugin 'tpope/vim-surround'
+" Plugin 'jiangmiao/auto-pairs'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -91,13 +88,10 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 Plugin 'Yggdroot/indentLine'
 let g:indentLine_color_term=239
 
+" Colour scheme
+Plugin 'kaicataldo/material.vim'
+
 " LANGUAGE-SPECIFIC
-" Emmet for vim
-Plugin 'mattn/emmet-vim'
-
-" End structures automatically
-Plugin 'tpope/vim-endwise'
-
 " Javascript
 Plugin 'pangloss/vim-javascript'
 
@@ -105,21 +99,84 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 let g:jsx_ext_required=0
 
-" Stylus
-Plugin 'wavded/vim-stylus'
-
 " GraphQL
 Plugin 'jparise/vim-graphql'
-
-" ReasonML
-Plugin 'reasonml-editor/vim-reason-plus'
 
 " Scala
 Plugin 'derekwyatt/vim-scala'
 let g:scala_scaladoc_indent = 1
+au BufRead,BufNewFile *.sbt set filetype=scala
 
-" Colour scheme
-Plugin 'kaicataldo/material.vim'
+" Coc.nvim
+Plugin 'neoclide/coc.nvim'
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Some server have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+" set cmdheight=2
+
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap for do codeAction of current line
+nmap <leader>ac <Plug>(coc-codeaction)
+
+" Remap for do action format
+nnoremap <silent> F :call CocAction('format')<CR>
+
+" Use K for show documentation in preview window
+nnoremap <silent> D :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -131,26 +188,21 @@ if !exists("g:syntax_on")
   syntax enable
 endif
 
+" Enable true colours
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 " Colour scheme configuration goes here, for some reason it is not recognised
 " when declared from within the vundle statement
-colorscheme material
 let g:material_theme_style = 'palenight'
+" let g:material_theme_style = 'dark'
 let g:material_terminal_italics = 1
 let g:airline_theme = 'material'
 set background=dark
 set t_Co=256
-set colorcolumn=80,100
-if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-
-"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-if (has("termguicolors"))
-  set termguicolors
-endif
+set colorcolumn=100
+colorscheme material
 
 " Tab
 set tabstop=2
@@ -178,15 +230,15 @@ set matchtime=3
 
 " Miscellaneous
 " Don't mess indentation up when pasting
-set pastetoggle=<F2>
+" set pastetoggle=<F2>
 " Relatve and absolute line numbers
 set number relativenumber
 set encoding=utf8
 set fileencoding=utf8
 set backspace=indent,eol,start
 set clipboard^=unnamed,unnamedplus
-set history=1000
-set undolevels=1000
+set history=200
+set undolevels=200
 set shell=/bin/zsh
 set showcmd
 set number
@@ -208,12 +260,13 @@ endif
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
 " Hit D to delete the current file
-nnoremap D :call delete(expand('%')) \| bdelete!<CR>
+" nnoremap D :call delete(expand('%')) \| bdelete!<CR>
 
 " HIGHLIGHT
 " Hit SPACE to stop get rid of search highlighting
-nnoremap <SPACE> :nohlsearch<CR>
+nnoremap <F2> :nohlsearch<CR>
 " Hit F8 to highlight all the other occurences of the current work in the file
 nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
