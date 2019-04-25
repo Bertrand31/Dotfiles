@@ -109,6 +109,7 @@ export NVM_DIR="$HOME/.nvm"
 export BULLETTRAIN_PROMPT_ADD_NEWLINE="false"
 export BULLETTRAIN_TIME_BG="green"
 export BULLETTRAIN_TIME_FG="black"
+export BULLETTRAIN_DIR_FG="black"
 export BULLETTRAIN_CONTEXT_DEFAULT_USER="bertrand"
 export BULLETTRAIN_EXEC_TIME_ELAPSED=1
 export BULLETTRAIN_DIR_EXTENDED="2"
@@ -147,3 +148,5 @@ alias gs='git status'
 alias gcl='git clone --depth=1'
 alias gco='git checkout'
 alias gr='git reset HEAD'
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
