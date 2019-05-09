@@ -30,10 +30,6 @@ let g:airline#extensions#ale#enabled = 1
 " Tab labels
 Plugin 'mkitt/tabline.vim'
 
-" tmux statusline generator
-" Plugin 'edkolev/tmuxline.vim'
-" let g:tmuxline_powerline_separators=0
-
 " Git
 Plugin 'tpope/vim-fugitive'
 
@@ -132,7 +128,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Use `[c` and `]c` for navigate diagnostics
+" Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
@@ -265,9 +261,9 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " nnoremap D :call delete(expand('%')) \| bdelete!<CR>
 
 " HIGHLIGHT
-" Hit SPACE to stop get rid of search highlighting
+" Hit F2 to stop get rid of search highlighting
 nnoremap <F2> :nohlsearch<CR>
-" Hit F8 to highlight all the other occurences of the current work in the file
+" Hit F8 to highlight all the other occurences of the current word in the file
 nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 " KEY MAPPINGS
