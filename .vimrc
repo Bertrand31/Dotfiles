@@ -121,10 +121,10 @@ set nowritebackup
 " Better display for messages
 " set cmdheight=2
 
-" Use <c-space> for trigger completion.
+" Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
@@ -268,6 +268,8 @@ nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 " KEY MAPPINGS
 let mapleader=","
+
+inoremap <silent><C-]> ⇒
 
 " Matching braces
 noremap % v%
