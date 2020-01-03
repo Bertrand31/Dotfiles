@@ -17,6 +17,7 @@ Plugin 'airblade/vim-gitgutter'
 
 " Status/Tabline
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
@@ -204,7 +205,7 @@ endif
 let g:material_theme_style = 'palenight'
 " let g:material_theme_style = 'dark'
 let g:material_terminal_italics = 1
-let g:airline_theme = 'material'
+let g:airline_theme = 'deus'
 set background=dark
 set t_Co=256
 set colorcolumn=100
