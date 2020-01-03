@@ -92,10 +92,6 @@ Plugin 'kaicataldo/material.vim'
 " Javascript
 Plugin 'pangloss/vim-javascript'
 
-" JSX
-Plugin 'mxw/vim-jsx'
-let g:jsx_ext_required=0
-
 " GraphQL
 Plugin 'jparise/vim-graphql'
 
@@ -167,7 +163,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
