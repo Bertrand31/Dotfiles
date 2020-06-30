@@ -1,23 +1,23 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin() " Keep Plugin commands between vundle#begin/end.
-Plugin 'gmarik/Vundle.vim'
+set termguicolors
+
+call plug#begin(stdpath('data') . '/plugged')
 
 " PLUGINS
 " GENERAL
-" Vim-script library
-Plugin 'L9'
-
 " Ale (syntax linting)
 " Plugin 'w0rp/ale'
 
+" Colorscheme
+Plug 'kaicataldo/material.vim'
+
 " Show git diff in the gutter column
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 " Status/Tabline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
@@ -29,13 +29,13 @@ let g:airline_highlighting_cache=1
 let g:airline#extensions#ale#enabled = 1
 
 " Tab labels
-Plugin 'mkitt/tabline.vim'
+Plug 'mkitt/tabline.vim'
 
 " Git
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 "vim-multiple-cursors
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_next_key='<C-l>'
 let g:multi_cursor_prev_key='<C-k>'
@@ -43,17 +43,17 @@ let g:multi_cursor_skip_key='<C-j>'
 let g:multi_cursor_quit_key='<Esc>'
 
 " Whitespace
-Plugin 'ntpeters/vim-better-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 autocmd BufWritePre * StripWhitespace " Strip trailing whitespace on save
 
 " Commenting
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 let g:NERDSpaceDelims=1
 let g:NERDCompactSexyComs=1
 let g:NERDTrimTrailingWhitespace=1
 
 " Tree explorer
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 map <silent> <C-n> :NERDTreeFind<CR>
 nmap <silent> <F3> :NERDTreeToggle<CR>
 let g:NERDTreeMapActivateNode="<C-n>"
@@ -68,13 +68,13 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Git files status in NERDTree
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Auto complete parenthesis
 " Plugin 'jiangmiao/auto-pairs'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 map <c-o> :CtrlPBuffer<CR>
 let g:ctrlp_map='<c-p>'
 let g:ctrlp_cmd='CtrlP'
@@ -82,21 +82,18 @@ let g:ctrlp_custom_ignore='\v[\/]\.(git|hg|svn)$'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 " Indention levels
-Plugin 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 let g:indentLine_color_term=239
-
-" Colour scheme
-Plugin 'kaicataldo/material.vim'
 
 " LANGUAGE-SPECIFIC
 " Javascript
-Plugin 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 
 " GraphQL
-Plugin 'jparise/vim-graphql'
+Plug 'jparise/vim-graphql'
 
 " Haskell
-Plugin 'neovimhaskell/haskell-vim'
+Plug 'neovimhaskell/haskell-vim'
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
@@ -106,12 +103,12 @@ let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
 " Scala
-Plugin 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala'
 let g:scala_scaladoc_indent = 1
 au BufRead,BufNewFile *.sbt set filetype=scala
 
 " Coc.nvim
-Plugin 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
 
@@ -182,7 +179,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " All of your Plugins must be added before the following line
-call vundle#end()
+call plug#end()
 filetype plugin indent on
 
 " Put your non-Plugin stuff after this line
@@ -191,20 +188,17 @@ if !exists("g:syntax_on")
   syntax enable
 endif
 
-" Enable true colours
-if (has("termguicolors"))
-  set termguicolors
-endif
-
 " Colour scheme configuration goes here, for some reason it is not recognised
 " when declared from within the vundle statement
+let g:airline_theme = 'deus'
+set background=dark
+set colorcolumn=100
 let g:material_theme_style = 'palenight'
 " let g:material_theme_style = 'dark'
 let g:material_terminal_italics = 1
 let g:airline_theme = 'deus'
 set background=dark
 set t_Co=256
-set colorcolumn=100
 colorscheme material
 
 " Tab
