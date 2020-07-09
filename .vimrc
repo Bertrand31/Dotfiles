@@ -188,6 +188,13 @@ if !exists("g:syntax_on")
   syntax enable
 endif
 
+<<<<<<< HEAD
+=======
+" Colour scheme configuration goes here, for some reason it is not recognised
+" when declared from within the vundle statement
+let g:airline_theme = 'deus'
+set background=dark
+>>>>>>> 9754ca167abdf7b4c0bc8f3f000547f9a7d62878
 set colorcolumn=100
 let g:material_theme_style = 'palenight'
 let g:material_terminal_italics = 1
