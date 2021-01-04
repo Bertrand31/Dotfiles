@@ -102,6 +102,12 @@ let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
+" Go
+Plug 'fatih/vim-go'
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+let g:go_def_mapping_enabled = 0
+
 " Scala
 Plug 'derekwyatt/vim-scala'
 let g:scala_scaladoc_indent = 1
@@ -218,8 +224,8 @@ set nobackup
 set hidden
 
 " Matching braces
-set showmatch
-set matchtime=3
+" set showmatch
+" set matchtime=3
 
 " Miscellaneous
 " Don't mess indentation up when pasting
