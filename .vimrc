@@ -12,8 +12,13 @@ Plug 'kyazdani42/nvim-web-devicons'
 " Colorscheme
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
-" Show git diff in the gutter column
-Plug 'airblade/vim-gitgutter'
+" Show git diff in the gutter column + git blame (leader + hb)
+Plug 'lewis6991/gitsigns.nvim'
+" Copy the Github URL in the clipboard (leader + gy)
+Plug 'ruifm/gitlinker.nvim'
+
+" Peek lines
+Plug 'nacro90/numb.nvim'
 
 Plug 'hoob3rt/lualine.nvim'
 Plug 'akinsho/nvim-bufferline.lua'
@@ -33,25 +38,26 @@ nnoremap <silent> <C-o> <cmd>Telescope buffers<cr>
 nnoremap <silent> <C-g> <cmd>Telescope live_grep<cr>
 nnoremap <silent> <C-i> <cmd>Telescope file_browser<cr>
 
-" Whitespace
-Plug 'ntpeters/vim-better-whitespace'
-autocmd BufWritePre * StripWhitespace " Strip trailing whitespace on save
+match errorMsg /\s\+$/ " highlight trailing whitespaces
 
 " Commenting
 Plug 'b3nj5m1n/kommentary'
 
+" Close brackets automatically
+Plug 'steelsojka/pears.nvim'
+
 " Tree explorer
 Plug 'kyazdani42/nvim-tree.lua'
-let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
+let g:nvim_tree_ignore = ['.git', 'node_modules', '.cache', '.metals', '.bsp', '.bloop', 'target']
 let g:nvim_tree_gitignore = 2
 " let g:nvim_tree_auto_open = 1
-let g:nvim_tree_follow = 1
 let g:nvim_tree_indent_markers = 1
 let g:nvim_tree_git_hl = 1
 let g:nvim_tree_add_trailing = 1
 let g:nvim_tree_group_empty = 1
 " let g:nvim_tree_quit_on_open = 1
 nnoremap <C-n> :NvimTreeToggle<CR>
+highlight NvimTreeFolderIcon guibg=blue
 
 nnoremap <silent> <C-c> <cmd>bd<cr>
 
@@ -76,7 +82,7 @@ let g:scala_scaladoc_indent = 1
 au BufRead,BufNewFile *.sbt set filetype=scala
 
 " Coc.nvim
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
 
@@ -240,16 +246,36 @@ require('lualine').setup{
     theme = 'palenight'
   }
 }
-require'bufferline'.setup{
-options = {
-  show_buffer_close_icons = false,
-  show_close_icon = false,
-  separator_style = "thick",
-  always_show_bufferline = false,
-}
+require'bufferline'.setup {
+  options = {
+    show_buffer_close_icons = false,
+    show_close_icon = false,
+    separator_style = "thick",
+  }
 }
 local neogit = require('neogit')
 neogit.setup {}
+
+require('gitsigns').setup()
+require"gitlinker".setup()
+
+require('numb').setup()
+
+require('telescope').setup {
+  defaults = {
+    layout_config = {
+      preview_cutoff = 140,
+    }
+  }
+}
+
+require "pears".setup()
+
+require'nvim-tree'.setup {
+  update_focused_file = {
+    enable = true
+  }
+}
 
 vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_line_default", {})
 vim.api.nvim_set_keymap("n", "<leader>c", "<Plug>kommentary_motion_default", {})
