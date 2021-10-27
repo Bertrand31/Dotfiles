@@ -142,6 +142,9 @@ export BULLETTRAIN_PROMPT_ORDER=(
 alias vim='~/Code/nvim-osx64/bin/nvim'
 alias k="kubectl"
 alias weather='curl -s https://wttr.in'
+alias less="bat"
+alias ll="exa -larh -t modified"
+alias ls="exa"
 
 # GIT
 alias ga='git add'
@@ -153,7 +156,6 @@ alias gl="git log --graph --all --decorate --pretty=format:'''%Cred%h%Creset -%C
 alias glo='git log --graph --decorate --all'
 alias gpl='git pull'
 alias gpls='gpl && gps'
-alias gps='git push'
 alias gs='git status'
 alias gcl='git clone --depth=1'
 alias gco='git checkout'
@@ -174,7 +176,7 @@ export PATH="$PATH:$GOBIN:$(go env GOPATH)/bin"
 # Needed by Stack (Haskell)
 export PATH="/Users/bertrandjunqua/.local/bin:$PATH"
 
- export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
@@ -183,3 +185,5 @@ export PATH="/Users/bertrandjunqua/.local/bin:$PATH"
 
 source /Users/bertrandjunqua/Code/dev-toolbox/setup-workstation/aws-ssh.sh
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+export SBT_OPTS="-Xmx4G"
