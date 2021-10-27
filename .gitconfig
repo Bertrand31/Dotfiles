@@ -17,3 +17,7 @@
     interactive = auto
     ui = true
     pager = true
+[init]
+	defaultBranch = master
+[pull]
+	rebase = true
