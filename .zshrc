@@ -9,13 +9,13 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/Users/bertrandjunqua/.oh-my-zsh"
+export ZSH="/home/bertrand/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -104,10 +104,7 @@ export EDITOR="$VISUAL"
 ###########
 ### NVM ###
 ###########
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source /usr/share/nvm/init-nvm.sh
 
 ###########################
 ### BULLET TRAIN PROMPT ###
@@ -139,8 +136,7 @@ export BULLETTRAIN_PROMPT_ORDER=(
 ### ALIASES ###
 ###############
 
-alias vim='~/Code/nvim-osx64/bin/nvim'
-alias k="kubectl"
+alias vim='nvim'
 alias weather='curl -s https://wttr.in'
 alias less="bat"
 alias ll="exa -larh -t modified"
@@ -168,11 +164,6 @@ export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 
 export PATH="/Users/bertrandjunqua/Library/Python/3.7/bin:$PATH"
 
-
-# Needed by Go
-export GOBIN="/Users/bertrandjunqua/go/bin"
-export PATH="$PATH:$GOBIN:$(go env GOPATH)/bin"
-
 # Needed by Stack (Haskell)
 export PATH="/Users/bertrandjunqua/.local/bin:$PATH"
 
@@ -182,8 +173,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-source /Users/bertrandjunqua/Code/dev-toolbox/setup-workstation/aws-ssh.sh
-export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 export SBT_OPTS="-Xmx4G"

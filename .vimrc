@@ -5,6 +5,8 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " PLUGINS
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  "
+
 " Icons
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -16,6 +18,8 @@ Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'lewis6991/gitsigns.nvim'
 " Copy the Github URL in the clipboard (leader + gy)
 Plug 'ruifm/gitlinker.nvim'
+" Add git blame information
+" Plug 'f-person/git-blame.nvim'
 
 " Peek lines
 Plug 'nacro90/numb.nvim'
@@ -48,13 +52,10 @@ Plug 'steelsojka/pears.nvim'
 
 " Tree explorer
 Plug 'kyazdani42/nvim-tree.lua'
-let g:nvim_tree_ignore = ['.git', 'node_modules', '.cache', '.metals', '.bsp', '.bloop', 'target']
-let g:nvim_tree_gitignore = 2
 " let g:nvim_tree_auto_open = 1
-let g:nvim_tree_indent_markers = 1
-let g:nvim_tree_git_hl = 1
-let g:nvim_tree_add_trailing = 1
-let g:nvim_tree_group_empty = 1
+" let g:nvim_tree_git_hl = 1
+" let g:nvim_tree_add_trailing = 1
+" let g:nvim_tree_group_empty = 1
 " let g:nvim_tree_quit_on_open = 1
 nnoremap <C-n> :NvimTreeToggle<CR>
 highlight NvimTreeFolderIcon guibg=blue
@@ -64,6 +65,7 @@ nnoremap <silent> <C-c> <cmd>bd<cr>
 " Indention levels
 Plug 'Yggdroot/indentLine'
 let g:indentLine_color_term=239
+let g:indentLine_setConceal = 0
 
 " LANGUAGE-SPECIFIC
 " Haskell
@@ -137,7 +139,7 @@ endfunction
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nmap <silent> R <Plug>(coc-rename)
 
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
@@ -274,6 +276,30 @@ require "pears".setup()
 require'nvim-tree'.setup {
   update_focused_file = {
     enable = true
+  },
+  renderer = {
+    add_trailing = true,
+    group_empty = true,
+    highlight_git = true,
+    indent_markers = {
+      enable = false,
+      icons = {
+        corner = "└ ",
+        edge = "│ ",
+        none = "  ",
+      },
+    },
+    icons = {
+      webdev_colors = true,
+    },
+  },
+  git = {
+    enable = true,
+    ignore = true,
+    timeout = 400,
+  },
+  view = {
+    width = 35
   }
 }
 
