@@ -48,7 +48,7 @@ match errorMsg /\s\+$/ " highlight trailing whitespaces
 Plug 'b3nj5m1n/kommentary'
 
 " Close brackets automatically
-Plug 'steelsojka/pears.nvim'
+" Plug 'steelsojka/pears.nvim'
 
 " Tree explorer
 Plug 'kyazdani42/nvim-tree.lua'
@@ -83,76 +83,11 @@ Plug 'derekwyatt/vim-scala'
 let g:scala_scaladoc_indent = 1
 au BufRead,BufNewFile *.sbt set filetype=scala
 
-" Coc.nvim
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-" Some server have issues with backup files, see #649
+set signcolumn=number
 set nobackup
 set nowritebackup
 
-" Better display for messages
-" set cmdheight=2
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Remap for do codeAction of current line
-nmap <leader>ac <Plug>(coc-codeaction)
-
-" Remap for do action format
-nnoremap <silent> F :call CocAction('format')<CR>
-
-" Use K for show documentation in preview window
-nnoremap <silent> D :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-if &filetype == 'vim'
-  execute 'h '.expand('<cword>')
-else
-  call CocAction('doHover')
-endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <silent> R <Plug>(coc-rename)
-
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+Plug 'scalameta/nvim-metals'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -243,6 +178,9 @@ map <right> <C-w><right>
 " set background=dark
 set termguicolors
 lua << EOF
+require('plugins')
+require('scala')
+
 require('lualine').setup{
   options = {
     theme = 'palenight'
@@ -271,7 +209,7 @@ require('telescope').setup {
   }
 }
 
-require "pears".setup()
+-- require "pears".setup()
 
 require'nvim-tree'.setup {
   update_focused_file = {
