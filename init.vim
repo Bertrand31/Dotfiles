@@ -14,30 +14,11 @@ Plug 'kyazdani42/nvim-web-devicons'
 " Colorscheme
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
-" Show git diff in the gutter column + git blame (leader + hb)
-Plug 'lewis6991/gitsigns.nvim'
-" Copy the Github URL in the clipboard (leader + gy)
-Plug 'ruifm/gitlinker.nvim'
-" Add git blame information
-" Plug 'f-person/git-blame.nvim'
-
-" Peek lines
-Plug 'nacro90/numb.nvim'
-
-Plug 'akinsho/nvim-bufferline.lua'
-
-" Git
-Plug 'TimUntersberger/neogit'
-
 " Go to project's root automatically
 Plug 'airblade/vim-rooter'
 
 match errorMsg /\s\+$/ " highlight trailing whitespaces
 
-" Commenting
-Plug 'b3nj5m1n/kommentary'
-
-nnoremap <C-n> :NvimTreeToggle<CR>
 highlight NvimTreeFolderIcon guibg=blue
 
 nnoremap <silent> <C-c> <cmd>bd<cr>
@@ -154,28 +135,6 @@ map <down> <C-w><down>
 map <left> <C-w><left>
 map <right> <C-w><right>
 
-" LuaLine configuration
-" set background=dark
-set termguicolors
 lua << EOF
 require('plugins')
-
-require'bufferline'.setup {
-  options = {
-    show_buffer_close_icons = false,
-    show_close_icon = false,
-    separator_style = "thick",
-  }
-}
-local neogit = require('neogit')
-neogit.setup {}
-
-require('gitsigns').setup()
-require"gitlinker".setup()
-
-require('numb').setup()
-
-vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_line_default", {})
-vim.api.nvim_set_keymap("n", "<leader>c", "<Plug>kommentary_motion_default", {})
-vim.api.nvim_set_keymap("v", "<leader>c", "<Plug>kommentary_visual_default", {})
 EOF
