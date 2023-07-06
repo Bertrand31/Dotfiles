@@ -24,7 +24,6 @@ Plug 'ruifm/gitlinker.nvim'
 " Peek lines
 Plug 'nacro90/numb.nvim'
 
-Plug 'hoob3rt/lualine.nvim'
 Plug 'akinsho/nvim-bufferline.lua'
 
 " Git
@@ -33,30 +32,11 @@ Plug 'TimUntersberger/neogit'
 " Go to project's root automatically
 Plug 'airblade/vim-rooter'
 
-" Telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-nnoremap <silent> <C-p> <cmd>Telescope git_files<cr>
-nnoremap <silent> <C-o> <cmd>Telescope buffers<cr>
-nnoremap <silent> <C-g> <cmd>Telescope live_grep<cr>
-nnoremap <silent> <C-i> <cmd>Telescope file_browser<cr>
-
 match errorMsg /\s\+$/ " highlight trailing whitespaces
 
 " Commenting
 Plug 'b3nj5m1n/kommentary'
 
-" Close brackets automatically
-" Plug 'steelsojka/pears.nvim'
-
-" Tree explorer
-Plug 'kyazdani42/nvim-tree.lua'
-" let g:nvim_tree_auto_open = 1
-" let g:nvim_tree_git_hl = 1
-" let g:nvim_tree_add_trailing = 1
-" let g:nvim_tree_group_empty = 1
-" let g:nvim_tree_quit_on_open = 1
 nnoremap <C-n> :NvimTreeToggle<CR>
 highlight NvimTreeFolderIcon guibg=blue
 
@@ -179,13 +159,7 @@ map <right> <C-w><right>
 set termguicolors
 lua << EOF
 require('plugins')
-require('scala')
 
-require('lualine').setup{
-  options = {
-    theme = 'palenight'
-  }
-}
 require'bufferline'.setup {
   options = {
     show_buffer_close_icons = false,
@@ -200,46 +174,6 @@ require('gitsigns').setup()
 require"gitlinker".setup()
 
 require('numb').setup()
-
-require('telescope').setup {
-  defaults = {
-    layout_config = {
-      preview_cutoff = 140,
-    }
-  }
-}
-
--- require "pears".setup()
-
-require'nvim-tree'.setup {
-  update_focused_file = {
-    enable = true
-  },
-  renderer = {
-    add_trailing = true,
-    group_empty = true,
-    highlight_git = true,
-    indent_markers = {
-      enable = false,
-      icons = {
-        corner = "└ ",
-        edge = "│ ",
-        none = "  ",
-      },
-    },
-    icons = {
-      webdev_colors = true,
-    },
-  },
-  git = {
-    enable = true,
-    ignore = true,
-    timeout = 400,
-  },
-  view = {
-    width = 35
-  }
-}
 
 vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_line_default", {})
 vim.api.nvim_set_keymap("n", "<leader>c", "<Plug>kommentary_motion_default", {})

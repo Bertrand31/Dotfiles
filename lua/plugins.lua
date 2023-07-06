@@ -1,13 +1,7 @@
-vim.cmd [[highlight IndentBlanklineIndent1 guibg=#292d3e gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent2 guibg=#262836 gui=nocombine]]
-
 return require('packer').startup(function(use)
 
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-
-  -- Scala
-  use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
 
   -- Completion
   use 'neovim/nvim-lspconfig'
@@ -20,24 +14,30 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
 
+  -- Scala
+  use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
+  require('config/scala')
+
+  -------- MISC --------
+  -- Tree-style file explorer panel
+  use 'nvim-tree/nvim-tree.lua'
+  require('config/nvim-tree')
+  -- Git files explorer popin
+  use 'nvim-lua/popup.nvim'
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.2',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  require('config/telescope')
+  -- Vertical indentation lines
+  use 'lukas-reineke/indent-blankline.nvim'
+  require('config/indent_blankline')
+  -- Automatic brackets pairing
   use {
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   }
-  -- Vertical indentation lines
-  use {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function () require("indent_blankline").setup {
-      char = "",
-      char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-      },
-      space_char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-      },
-      show_trailing_blankline_indent = false,
-    } end
-  }
+  -- Cool bar at the bottom
+  use 'hoob3rt/lualine.nvim'
+  require('config/lualine')
 end)
