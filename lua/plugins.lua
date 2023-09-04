@@ -4,6 +4,11 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Completion && LSP
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
+  }
+  require('config/treesitter')
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
@@ -61,10 +66,6 @@ return require('packer').startup(function(use)
   -- Peek lines
   use 'nacro90/numb.nvim'
   require('numb').setup()
-
-  -- General-purpose git utility
-  use 'NeogitOrg/neogit'
-  require('neogit').setup {}
 
   -- Commenting
   use 'b3nj5m1n/kommentary'

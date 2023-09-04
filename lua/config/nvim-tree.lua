@@ -16,10 +16,9 @@ local function my_on_attach(bufnr)
   api.config.mappings.default_on_attach(bufnr)
 
   -- custom mappings
-  vim.keymap.set('n', '<C-n>', api.tree.toggle, opts('Toggle'))
+  vim.keymap.set('n', '<C-n>', api.tree.toggle_no_buffer_filter, opts('Toggle No Buffer'))
 end
 
--- empty setup using defaults
 require('nvim-tree').setup {
   on_attach = my_on_attach,
   update_focused_file = {
