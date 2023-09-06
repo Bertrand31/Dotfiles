@@ -18,7 +18,13 @@ vim.opt.fileencoding = "utf8"
 vim.opt.backspace = "indent,eol,start"
 vim.opt.history = 200
 vim.opt.undolevels = 200
-vim.opt.shell = "/bin/zsh"
+vim.opt.shell = "/bin/fish"
+
+-- Files
+vim.opt.writebackup = false
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.hidden = true
 
 vim.cmd([[
   set nocompatible
@@ -34,23 +40,10 @@ vim.cmd([[
   nnoremap <silent> <C-c> <cmd>bd<cr>
 
   " LANGUAGE-SPECIFIC
-  " Haskell
-  Plug 'neovimhaskell/haskell-vim'
-  let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-  let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-  let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-  let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-  let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-  let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-  let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-
   " Scala
   Plug 'derekwyatt/vim-scala'
   let g:scala_scaladoc_indent = 1
   au BufRead,BufNewFile *.sbt set filetype=scala
-
-  set nobackup
-  set nowritebackup
 
   Plug 'scalameta/nvim-metals'
 
@@ -79,11 +72,6 @@ vim.cmd([[
 
   " Substitution
   set gdefault
-
-  " Files
-  set noswapfile
-  set nobackup
-  set hidden
 
   " Matching braces
   " set showmatch
