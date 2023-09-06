@@ -1,6 +1,3 @@
--- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
-
 local function my_on_attach(bufnr)
   local api = require "nvim-tree.api"
   -- default mappings

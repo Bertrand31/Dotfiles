@@ -55,7 +55,7 @@ return require('packer').startup(function(use)
   require('config/lualine')
 
   -- Buffers tabs
-  use 'akinsho/nvim-bufferline.lua'
+  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
   require('config/bufferline')
 
   -- Show git diff in the gutter column + git blame (leader + hb)
