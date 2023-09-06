@@ -1,3 +1,6 @@
+-- KEY MAPPINGS
+vim.g.mapleader = ","
+
 -- disable netrw at the very start of your init.lua
 -- Required by nvim-tree
 vim.g.loaded_netrw = 1
@@ -6,16 +9,23 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
+-- Display bar at the 100 char limit
+vim.opt.colorcolumn = "80,100"
+
+vim.opt.signcolumn = "number"
+vim.opt.encoding = "utf8"
+vim.opt.fileencoding = "utf8"
+vim.opt.backspace = "indent,eol,start"
+vim.opt.history = 200
+vim.opt.undolevels = 200
+vim.opt.shell = "/bin/zsh"
+
 vim.cmd([[
   set nocompatible
   filetype off
   set nofoldenable
 
   call plug#begin(stdpath('data') . '/plugged')
-
-  " PLUGINS
-  " Icons
-  Plug 'ryanoasis/vim-devicons'
 
   match errorMsg /\s\+$/ " highlight trailing whitespaces
 
@@ -39,7 +49,6 @@ vim.cmd([[
   let g:scala_scaladoc_indent = 1
   au BufRead,BufNewFile *.sbt set filetype=scala
 
-  set signcolumn=number
   set nobackup
   set nowritebackup
 
@@ -55,9 +64,6 @@ vim.cmd([[
   if !exists("g:syntax_on")
   syntax enable
   endif
-
-  " Display bar at the 100 char limit
-  set colorcolumn=100
 
   " Tab
   set tabstop=2
@@ -86,13 +92,7 @@ vim.cmd([[
   " Miscellaneous
   " Relatve and absolute line numbers
   set number relativenumber
-  set encoding=utf8
-  set fileencoding=utf8
-  set backspace=indent,eol,start
   set clipboard^=unnamed,unnamedplus
-  set history=200
-  set undolevels=200
-  set shell=/bin/zsh
   set showcmd
   set number
 
@@ -104,11 +104,6 @@ vim.cmd([[
   nnoremap <F2> :nohlsearch<CR>
   " Hit F8 to highlight all the other occurences of the current word in the file
   nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-
-  " KEY MAPPINGS
-  let mapleader=","
-
-  inoremap <silent><C-]> ⇒
 
   " Matching braces
   noremap % v%
