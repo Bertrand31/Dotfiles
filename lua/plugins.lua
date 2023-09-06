@@ -91,12 +91,8 @@ return require('packer').startup(function(use)
   vim.cmd 'colorscheme material'
 
   -- Set workspace to git root
-  use 'notjedi/nvim-rooter.lua'
-  require("nvim-tree").setup({
-    update_cwd = true,
-    update_focused_file = {
-      enable = true,
-      update_cwd = true
-    },
-  })
+  use {
+    'notjedi/nvim-rooter.lua',
+    config = function() require'nvim-rooter'.setup() end
+  }
 end)

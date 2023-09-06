@@ -8,10 +8,12 @@ local function my_on_attach(bufnr)
 end
 
 require('nvim-tree').setup {
-  on_attach = my_on_attach,
+  update_cwd = true,
   update_focused_file = {
-    enable = true
+    enable = true,
+    update_cwd = true
   },
+  on_attach = my_on_attach,
   renderer = {
     add_trailing = true,
     group_empty = true,
