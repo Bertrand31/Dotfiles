@@ -25,6 +25,9 @@ return require('packer').startup(function(use)
 
   -------- MISC --------
 
+  use 'nvim-tree/nvim-web-devicons'
+  require'nvim-web-devicons'.setup()
+
   -- Tree-style file explorer panel
   use 'nvim-tree/nvim-tree.lua'
   require('config/nvim-tree')
@@ -38,7 +41,7 @@ return require('packer').startup(function(use)
   require('config/telescope')
 
   -- Vertical indentation lines
-  use 'lukas-reineke/indent-blankline.nvim'
+  use "lukas-reineke/indent-blankline.nvim"
   require('config/indent-blankline')
 
   -- Automatic brackets pairing
@@ -70,4 +73,30 @@ return require('packer').startup(function(use)
   -- Commenting
   use 'b3nj5m1n/kommentary'
   require('config/kommentary')
+ 
+  -- Colourscheme
+  vim.g.material_style = "palenight"
+  use 'marko-cerovac/material.nvim'
+  require('material').setup({
+    plugins = {
+      "gitsigns",
+      "indent-blankline",
+      "neogit",
+      "nvim-cmp",
+      "nvim-tree",
+      "nvim-web-devicons",
+      "telescope",
+    }
+  })
+  vim.cmd 'colorscheme material'
+
+  -- Set workspace to git root
+  use 'notjedi/nvim-rooter.lua'
+  require("nvim-tree").setup({
+    update_cwd = true,
+    update_focused_file = {
+      enable = true,
+      update_cwd = true
+    },
+  })
 end)

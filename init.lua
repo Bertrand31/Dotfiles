@@ -13,13 +13,6 @@ vim.cmd([[
   " PLUGINS
   " Icons
   Plug 'ryanoasis/vim-devicons'
-  Plug 'kyazdani42/nvim-web-devicons'
-
-  " Colorscheme
-  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-
-  " Go to project's root automatically
-  Plug 'airblade/vim-rooter'
 
   match errorMsg /\s\+$/ " highlight trailing whitespaces
 
@@ -60,13 +53,8 @@ vim.cmd([[
   syntax enable
   endif
 
-  " Colour scheme configuration goes here, for some reason it is not recognised
-  " when declared from within the vundle statement
+  " Display bar at the 100 char limit
   set colorcolumn=100
-  set t_Co=256
-  let g:material_terminal_italics = 1
-  let g:material_theme_style = 'palenight'
-  colorscheme material
 
   " Tab
   set tabstop=2
@@ -93,8 +81,6 @@ vim.cmd([[
   " set matchtime=3
 
   " Miscellaneous
-  " Don't mess indentation up when pasting
-  " set pastetoggle=<F2>
   " Relatve and absolute line numbers
   set number relativenumber
   set encoding=utf8
