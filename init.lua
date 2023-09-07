@@ -1,16 +1,33 @@
 -- KEY MAPPINGS
 vim.g.mapleader = ","
+-- Hit F2 to get rid of search highlighting
+vim.api.nvim_set_keymap('n', '<F2>', '<Cmd>:nohlsearch<CR>', { noremap = true, silent = true })
+-- Matching braces
+vim.api.nvim_set_keymap('n', '%',  'v%', { noremap = true, silent = true }) -- sample "noremap"
+-- Buffer
+vim.keymap.set('n', '<leader>n', '<Cmd>:bnext<CR>', { remap = true }) -- sample "nmap"
+vim.keymap.set('n', '<leader>p', '<Cmd>:bprevious<CR>', { remap = true })
+vim.api.nvim_set_keymap('n', '<C-c>',  [[<Cmd>bd<CR>]], { noremap = true, silent = true })
+-- Pane navigation
+vim.keymap.set('n', '<up>', '<C-w><up>') -- sample "map"
+vim.keymap.set('n', '<down>', '<C-w><down>')
+vim.keymap.set('n', '<left>', '<C-w><left>')
+vim.keymap.set('n', '<right>', '<C-w><right>')
 
 -- disable netrw at the very start of your init.lua
 -- Required by nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- set termguicolors to enable highlight groups
+-- Set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
+
+vim.opt.clipboard = "unnamed,unnamedplus"
 
 -- Display bar at the 100 char limit
 vim.opt.colorcolumn = "80,100"
+-- Disable folding
+vim.opt.foldenable = false
 
 vim.opt.signcolumn = "number"
 vim.opt.encoding = "utf8"
@@ -26,85 +43,33 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.hidden = true
 
+-- Tab
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+
+-- Search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+
+-- Matching braces
+vim.opt.showmatch = true
+vim.opt.matchtime = 3
+
+-- Misc interface
+vim.opt.showcmd = true
+vim.opt.number = true -- Show absolute line number of current line
+vim.opt.relativenumber = true -- Show relative line numbers in the gutter
+
 vim.cmd([[
-  set nocompatible
-  filetype off
-  set nofoldenable
-
-  call plug#begin(stdpath('data') . '/plugged')
-
   match errorMsg /\s\+$/ " highlight trailing whitespaces
-
-  highlight NvimTreeFolderIcon guibg=blue
-
-  nnoremap <silent> <C-c> <cmd>bd<cr>
-
-  " LANGUAGE-SPECIFIC
-  " Scala
-  Plug 'derekwyatt/vim-scala'
-  let g:scala_scaladoc_indent = 1
-  au BufRead,BufNewFile *.sbt set filetype=scala
-
-  Plug 'scalameta/nvim-metals'
-
-  " All of your Plugins must be added before the following line
-  call plug#end()
-
-  filetype plugin indent on
-
-  " Put your non-Plugin stuff after this line
-  " SETTINGS
-  if !exists("g:syntax_on")
-  syntax enable
-  endif
-
-  " Tab
-  set tabstop=2
-  set softtabstop=2
-  set shiftwidth=2
-  set expandtab
-
-  " Search
-  set ignorecase
-  set smartcase
-  set hlsearch
-  set incsearch
-
-  " Substitution
-  set gdefault
-
-  " Matching braces
-  " set showmatch
-  " set matchtime=3
-
-  " Miscellaneous
-  " Relatve and absolute line numbers
-  set number relativenumber
-  set clipboard^=unnamed,unnamedplus
-  set showcmd
-  set number
-
+  " Highlight occurences of word under cursor
+  nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
   " Git Wrap Text
   au FileType gitcommit set tw=72
-
-  " HIGHLIGHT
-  " Hit F2 to stop get rid of search highlighting
-  nnoremap <F2> :nohlsearch<CR>
-  " Hit F8 to highlight all the other occurences of the current word in the file
-  nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-
-  " Matching braces
-  noremap % v%
-
-  " Buffer
-  nmap <silent> <leader>n :bnext<CR>
-  nmap <silent> <leader>p :bprevious<CR>
-
-  " Pane navigation
-  map <up> <C-w><up>
-  map <down> <C-w><down>
-  map <left> <C-w><left>
-  map <right> <C-w><right>
 ]])
 
 require('plugins')
