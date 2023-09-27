@@ -75,20 +75,8 @@ return require('packer').startup(function(use)
   require('config/kommentary')
  
   -- Colourscheme
-  vim.g.material_style = "palenight"
   use 'marko-cerovac/material.nvim'
-  require('material').setup({
-    plugins = {
-      "gitsigns",
-      "indent-blankline",
-      "neogit",
-      "nvim-cmp",
-      "nvim-tree",
-      "nvim-web-devicons",
-      "telescope",
-    }
-  })
-  vim.cmd 'colorscheme material'
+  require('config/material')
 
   -- Set workspace to git root
   use {

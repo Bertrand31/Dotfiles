@@ -24,12 +24,9 @@ vim.opt.termguicolors = true
 
 vim.opt.clipboard = "unnamed,unnamedplus"
 
--- Display bar at the 100 char limit
-vim.opt.colorcolumn = "80,100"
 -- Disable folding
 vim.opt.foldenable = false
 
-vim.opt.signcolumn = "number"
 vim.opt.encoding = "utf8"
 vim.opt.fileencoding = "utf8"
 vim.opt.backspace = "indent,eol,start"
@@ -60,9 +57,12 @@ vim.opt.showmatch = true
 vim.opt.matchtime = 3
 
 -- Misc interface
+vim.opt.cursorline = true
+vim.opt.signcolumn = "number"
 vim.opt.showcmd = true
 vim.opt.number = true -- Show absolute line number of current line
 vim.opt.relativenumber = true -- Show relative line numbers in the gutter
+vim.opt.colorcolumn = "80,100" -- Display bar at the 80 and 100 char limits
 
 vim.cmd([[
   match errorMsg /\s\+$/ " highlight trailing whitespaces
