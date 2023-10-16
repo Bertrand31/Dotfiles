@@ -10,7 +10,7 @@ return {
       lualine_z = {'location'}
     },
     options = {
-      theme = 'palenight'
+      theme = 'onedark'
     }
   },
 }
