@@ -34,9 +34,9 @@ return {
       vim.keymap.set('n', 'gi'   , vim.lsp.buf.implementation                        , bufopts)
       vim.keymap.set('n', 'go'   , vim.lsp.buf.type_definition                       , bufopts)
       vim.keymap.set('n', 'gr'   , vim.lsp.buf.references                            , bufopts)
-      --m.keymap.set('n', TODO   , vim.lsp.buf.code_action                           , bufopts) -- lspconfig: <space>ca; lsp-zero: <F4>
-      m.keymap.set('n', '<C-F>'   , function() vim.lsp.buf.format { async = true } end, bufopts) -- lspconfig: <space>f
-      --m.keymap.set('n', TODO   , vim.lsp.buf.rename                                , bufopts) -- lspconfig: <space>rn; lsp-zero: <F2>
+      vim.keymap.set('n', 'gf'   , function() vim.lsp.buf.format { async = true } end, bufopts) -- lspconfig: <space>f
+      vim.keymap.set('n', 'R'    , vim.lsp.buf.rename                                , bufopts) -- lspconfig: <space>rn; lsp-zero: <F2>
+      vim.keymap.set('n', 'ga'   , vim.lsp.buf.code_action                           , bufopts) -- lspconfig: <space>ca; lsp-zero: <F4>
     end
     local lspconfig = require('lspconfig')
     -- enable both language-servers for both eslint and typescript:
