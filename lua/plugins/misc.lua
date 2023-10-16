@@ -2,12 +2,6 @@ return {
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-path',
   'hrsh7th/cmp-cmdline',
-  'hrsh7th/cmp-vsnip',
-   {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
-  },
   {
     'scalameta/nvim-metals',
     dependencies = { "nvim-lua/plenary.nvim" },
