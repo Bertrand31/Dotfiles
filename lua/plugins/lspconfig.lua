@@ -34,13 +34,14 @@ return {
       vim.keymap.set('n', 'gi'   , vim.lsp.buf.implementation                        , bufopts)
       vim.keymap.set('n', 'go'   , vim.lsp.buf.type_definition                       , bufopts)
       vim.keymap.set('n', 'gr'   , vim.lsp.buf.references                            , bufopts)
-      vim.keymap.set('n', 'gf'   , function() vim.lsp.buf.format { async = true } end, bufopts) -- lspconfig: <space>f
-      vim.keymap.set('n', 'R'    , vim.lsp.buf.rename                                , bufopts) -- lspconfig: <space>rn; lsp-zero: <F2>
-      vim.keymap.set('n', 'ga'   , vim.lsp.buf.code_action                           , bufopts) -- lspconfig: <space>ca; lsp-zero: <F4>
+      vim.keymap.set('n', 'gf'   , function() vim.lsp.buf.format { async = true } end, bufopts)
+      vim.keymap.set('n', 'R'    , vim.lsp.buf.rename                                , bufopts)
+      vim.keymap.set('n', 'ga'   , vim.lsp.buf.code_action                           , bufopts)
+      vim.keymap.set('n', 'gl'   , vim.diagnostic.open_float                         , bufopts)
     end
     local lspconfig = require('lspconfig')
     -- enable both language-servers for both eslint and typescript:
-    for _, server in pairs({ 'eslint', 'tsserver' }) do
+    for _, server in pairs({ 'eslint', 'tsserver', 'rust_analyzer' }) do
       lspconfig[server].setup({
         capabilities = lsp_capabilities,
         on_attach = lsp_on_attach,
