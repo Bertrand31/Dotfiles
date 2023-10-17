@@ -35,14 +35,11 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 
-export PATH="/Users/bertrandjunqua/Library/Python/3.7/bin:$PATH"
-
-# Needed by Stack (Haskell)
-export PATH="/Users/bertrandjunqua/.local/bin:$PATH"
-
 # >>> coursier install directory >>>
 export PATH="$PATH:/home/bertrand/.local/share/coursier/bin"
 # <<< coursier install directory <<<
+
+export PATH="~/.ghcup/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
@@ -154,6 +151,4 @@ alias zi=__zoxide_zi
 # To initialize zoxide, add this to your configuration (usually
 # ~/.config/fish/config.fish):
 #
-# zoxide init fish | source
-
-nvm use 16.15.1 > /dev/null
+zoxide init fish | source
