@@ -27,17 +27,18 @@ return {
       -- following keymap is based on both lspconfig and lsp-zero.nvim:
       -- - https://github.com/neovim/nvim-lspconfig/blob/fd8f18fe819f1049d00de74817523f4823ba259a/README.md?plain=1#L79-L93
       -- - https://github.com/VonHeikemen/lsp-zero.nvim/blob/18a5887631187f3f7c408ce545fd12b8aeceba06/lua/lsp-zero/server.lua#L285-L298
-      vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help                        , bufopts)
-      vim.keymap.set('n', 'K'    , vim.lsp.buf.hover                                 , bufopts)
-      vim.keymap.set('n', 'gD'   , vim.lsp.buf.declaration                           , bufopts)
-      vim.keymap.set('n', 'gd'   , vim.lsp.buf.definition                            , bufopts)
-      vim.keymap.set('n', 'gi'   , vim.lsp.buf.implementation                        , bufopts)
-      vim.keymap.set('n', 'go'   , vim.lsp.buf.type_definition                       , bufopts)
-      vim.keymap.set('n', 'gr'   , vim.lsp.buf.references                            , bufopts)
-      vim.keymap.set('n', 'gf'   , function() vim.lsp.buf.format { async = true } end, bufopts)
-      vim.keymap.set('n', 'R'    , vim.lsp.buf.rename                                , bufopts)
-      vim.keymap.set('n', 'ga'   , vim.lsp.buf.code_action                           , bufopts)
-      vim.keymap.set('n', 'gl'   , vim.diagnostic.open_float                         , bufopts)
+      local map = vim.keymap.set
+      map('n', '<C-k>', vim.lsp.buf.signature_help                        , bufopts)
+      map('n', 'K'    , vim.lsp.buf.hover                                 , bufopts)
+      map('n', 'gD'   , vim.lsp.buf.declaration                           , bufopts)
+      map('n', 'gd'   , vim.lsp.buf.definition                            , bufopts)
+      map('n', 'gi'   , vim.lsp.buf.implementation                        , bufopts)
+      map('n', 'go'   , vim.lsp.buf.type_definition                       , bufopts)
+      map('n', 'gr'   , vim.lsp.buf.references                            , bufopts)
+      map('n', 'gf'   , function() vim.lsp.buf.format { async = true } end, bufopts)
+      map('n', 'R'    , vim.lsp.buf.rename                                , bufopts)
+      map('n', 'ga'   , vim.lsp.buf.code_action                           , bufopts)
+      map('n', 'gl'   , vim.diagnostic.open_float                         , bufopts)
     end
     local lspconfig = require('lspconfig')
     -- enable both language-servers for both eslint and typescript:
