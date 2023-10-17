@@ -4,13 +4,7 @@ return {
     if type(opts.ensure_installed) == "table" then
       vim.list_extend(opts.ensure_installed, {
         "scala",
-        "bash",
-        "html",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "query",
-        "regex",
+        "haskell",
         "javascript",
         "json",
         "typescript",
@@ -18,6 +12,13 @@ return {
         "ron",
         "rust",
         "toml",
+        "bash",
+        "html",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "query",
+        "regex",
         "vim",
         "yaml",
       })

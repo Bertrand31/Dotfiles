@@ -8,6 +8,17 @@ return {
         local cmp = require('cmp')
         cmp.setup({
           completion = { completeopt = 'menu,menuone,noinsert' },
+          snippet = {
+            expand = function(args)
+              require('luasnip').lsp_expand(args.body)
+            end,
+          },
+          sources = cmp.config.sources({
+            { name = 'nvim_lsp' },
+            { name = 'luasnip' }, -- For luasnip users.
+          }, {
+            { name = 'buffer' },
+          }),
           -- if desired, choose another keymap-preset:
           mapping = cmp.mapping.preset.insert(),
           -- optionally, add more completion-sources:
@@ -16,6 +27,12 @@ return {
       end,
       dependencies = {
         "hrsh7th/cmp-emoji",
+        {
+          "L3MON4D3/LuaSnip",
+          version = "v2.*",
+          build = "make install_jsregexp"
+        },
+        "saadparwaiz1/cmp_luasnip",
       },
     },
     'jose-elias-alvarez/typescript.nvim',
@@ -42,12 +59,16 @@ return {
     end
     local lspconfig = require('lspconfig')
     -- enable both language-servers for both eslint and typescript:
-    for _, server in pairs({ 'eslint', 'tsserver', 'rust_analyzer' }) do
+    for _, server in pairs({ 'eslint', 'tsserver', 'rust_analyzer', 'hls' }) do
       lspconfig[server].setup({
         capabilities = lsp_capabilities,
         on_attach = lsp_on_attach,
       })
     end
   end,
-  ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'rust', 'toml' },
+  ft = {
+    'javascript', 'javascriptreact', 'typescript', 'typescriptreact',
+    'rust', 'toml',
+    'haskell', 'lhaskell', 'cabal',
+  },
 }
