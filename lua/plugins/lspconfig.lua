@@ -15,7 +15,7 @@ return {
           },
           sources = cmp.config.sources({
             { name = 'nvim_lsp' },
-            { name = 'luasnip' }, -- For luasnip users.
+            { name = 'luasnip' },
           }, {
             { name = 'buffer' },
           }),
@@ -41,9 +41,6 @@ return {
     local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lsp_on_attach = function(client, bufnr)
       local bufopts = { noremap=true, silent=true, buffer=bufnr }
-      -- following keymap is based on both lspconfig and lsp-zero.nvim:
-      -- - https://github.com/neovim/nvim-lspconfig/blob/fd8f18fe819f1049d00de74817523f4823ba259a/README.md?plain=1#L79-L93
-      -- - https://github.com/VonHeikemen/lsp-zero.nvim/blob/18a5887631187f3f7c408ce545fd12b8aeceba06/lua/lsp-zero/server.lua#L285-L298
       local map = vim.keymap.set
       map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
       map('n', 'K'    , vim.lsp.buf.hover, bufopts)
