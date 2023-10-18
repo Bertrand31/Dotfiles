@@ -57,6 +57,7 @@ vim.opt.showmatch = true
 vim.opt.matchtime = 3
 
 -- Misc interface
+vim.opt.cmdheight=0
 vim.opt.cursorline = true
 vim.opt.signcolumn = "number"
 vim.opt.showcmd = true
