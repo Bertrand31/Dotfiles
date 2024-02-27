@@ -33,7 +33,12 @@
         oldHighlight = red bold 52
         newNormal = green bold
         newHighlight = green bold 22
-
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [init]
 	defaultBranch = master
 [pull]
