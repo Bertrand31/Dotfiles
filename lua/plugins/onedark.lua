@@ -1,5 +1,3 @@
--- vim.g.material_style = "palenight"
-
 return {
   'navarasu/onedark.nvim',
   lazy = false,
