@@ -56,6 +56,7 @@ return {
     end
     local lspconfig = require('lspconfig')
     -- enable both language-servers for both eslint and typescript:
+    -- Required for rust_analyzer: https://stackoverflow.com/a/77453276
     for _, server in pairs({ 'eslint', 'tsserver', 'rust_analyzer', 'hls' }) do
       lspconfig[server].setup({
         capabilities = lsp_capabilities,

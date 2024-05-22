@@ -6,7 +6,7 @@ end
 ### ALIASES ###
 ###############
 
-alias vim='nvim'
+alias vim='/home/bertrand/Code/nvim-linux64/bin/nvim'
 alias we='curl -s https://wttr.in'
 alias less="bat"
 alias ll="exa -lah -t modified"
@@ -39,18 +39,10 @@ export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 export PATH="$PATH:/home/bertrand/.local/share/coursier/bin"
 # <<< coursier install directory <<<
 
-export PATH="~/.ghcup/bin:$PATH"
-export PATH="~/.cargo/bin:$PATH"
-
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
+export PATH="$PATH:~/.ghcup/bin"
 
 # =============================================================================
-#
 # Utility functions for zoxide.
-#
 
 # pwd based on the value of _ZO_RESOLVE_SYMLINKS.
 function __zoxide_pwd
@@ -127,6 +119,10 @@ function __zoxide_zi
     and __zoxide_cd $result
 end
 
+# NVM
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 # =============================================================================
 #
 # Convenient aliases for zoxide. Disable these using --no-aliases.
@@ -147,9 +143,4 @@ complete -c z -f -a '(__zoxide_z_complete)'
 __zoxide_unset zi
 alias zi=__zoxide_zi
 
-# =============================================================================
-#
-# To initialize zoxide, add this to your configuration (usually
-# ~/.config/fish/config.fish):
-#
 zoxide init fish | source
