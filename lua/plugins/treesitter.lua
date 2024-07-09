@@ -9,6 +9,7 @@ return {
         "json",
         "typescript",
         "prisma",
+        "python",
         "tsx",
         "ron",
         "rust",
