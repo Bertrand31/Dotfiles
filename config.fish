@@ -6,11 +6,19 @@ end
 ### ALIASES ###
 ###############
 
+alias v='/home/bertrand/Code/nvim-linux64/bin/nvim'
 alias vim='/home/bertrand/Code/nvim-linux64/bin/nvim'
 alias we='curl -s https://wttr.in'
 alias less="bat"
-alias ll="exa -lah -t modified"
-alias ls="exa"
+alias ll="eza -lah -t modified"
+alias ls="eza"
+alias df="duf"
+alias fzf="fzf --tmux"
+alias tree="tre"
+alias bandwhich="sudo bandwhich"
+alias du="dua"
+alias ncdu="dua i"
+alias cloc="scc"
 
 # GIT
 alias ga='git add'
