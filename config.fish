@@ -18,7 +18,7 @@ alias tree="tre"
 alias bandwhich="sudo bandwhich"
 alias du="dua"
 alias ncdu="dua i"
-alias cloc="scc"
+alias cloc="scc --no-cocomo --no-complexity"
 
 # GIT
 alias ga='git add'
