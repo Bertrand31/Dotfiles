@@ -48,9 +48,9 @@ return {
       map('n', 'gd'   , vim.lsp.buf.definition, bufopts)
       map('n', 'gi'   , vim.lsp.buf.implementation, bufopts)
       map('n', 'go'   , vim.lsp.buf.type_definition, bufopts)
-      map('n', 'gr'   , vim.lsp.buf.referen, bufopts)
+      map('n', 'gr'   , vim.lsp.buf.references, bufopts)
       map('n', 'gf'   , function() vim.lsp.buf.format { async = true } end, bufopts)
-      map('n', 'R'    , vim.lsp.buf.ren, bufopts)
+      map('n', 'R'    , vim.lsp.buf.rename, bufopts)
       map('n', 'ga'   , vim.lsp.buf.code_action, bufopts)
       map('n', 'gl'   , vim.diagnostic.open_float, bufopts)
     end
