@@ -41,8 +41,6 @@ alias gpsup='git push --set-upstream origin (git branch --show-current)'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
-
 # >>> coursier install directory >>>
 export PATH="$PATH:/home/bertrand/.local/share/coursier/bin"
 # <<< coursier install directory <<<
