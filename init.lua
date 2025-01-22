@@ -14,6 +14,16 @@ vim.keymap.set('n', '<down>', '<C-w><down>')
 vim.keymap.set('n', '<left>', '<C-w><left>')
 vim.keymap.set('n', '<right>', '<C-w><right>')
 
+-- Bépo remapping of movement keys
+-- Down
+--vim.api.nvim_set_keymap('n', 'j',  's', { noremap = true, silent = true })
+-- Up
+--vim.api.nvim_set_keymap('n', 'k',  'r', { noremap = true, silent = true })
+-- Left
+--vim.api.nvim_set_keymap('n', 'h',  't', { noremap = true, silent = true })
+-- Right
+--vim.api.nvim_set_keymap('n', 'l',  'n', { noremap = true, silent = true })
+
 -- disable netrw at the very start of your init.lua
 -- Required by nvim-tree
 vim.g.loaded_netrw = 1
