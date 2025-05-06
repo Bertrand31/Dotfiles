@@ -6,6 +6,7 @@ return {
         "scala",
         "haskell",
         "javascript",
+        "go",
         "json",
         "typescript",
         "prisma",

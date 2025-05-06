@@ -58,7 +58,7 @@ return {
     -- Required for TS:
     -- npm install -g typescript typescript-language-server vscode-langservers-extracted
     -- Required for rust_analyzer: https://stackoverflow.com/a/77453276
-    for _, server in pairs({ 'eslint', 'ts_ls', 'rust_analyzer', 'hls', 'pyright' }) do
+    for _, server in pairs({ 'eslint', 'gopls', 'ts_ls', 'rust_analyzer', 'hls', 'pyright' }) do
       lspconfig[server].setup({
         capabilities = lsp_capabilities,
         on_attach = lsp_on_attach,
@@ -72,6 +72,7 @@ return {
   end,
   ft = {
     'javascript', 'javascriptreact', 'typescript', 'typescriptreact',
+    'go',
     'rust', 'toml',
     'haskell', 'lhaskell', 'cabal',
     'python',

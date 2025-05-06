@@ -9,20 +9,10 @@ vim.keymap.set('n', '<leader>n', '<Cmd>:bnext<CR>', { remap = true }) -- sample 
 vim.keymap.set('n', '<leader>p', '<Cmd>:bprevious<CR>', { remap = true })
 vim.api.nvim_set_keymap('n', '<C-c>',  [[<Cmd>bd<CR>]], { noremap = true, silent = true })
 -- Pane navigation
-vim.keymap.set('n', '<up>', '<C-w><up>') -- sample "map"
-vim.keymap.set('n', '<down>', '<C-w><down>')
-vim.keymap.set('n', '<left>', '<C-w><left>')
-vim.keymap.set('n', '<right>', '<C-w><right>')
-
--- Bépo remapping of movement keys
--- Down
---vim.api.nvim_set_keymap('n', 'j',  's', { noremap = true, silent = true })
--- Up
---vim.api.nvim_set_keymap('n', 'k',  'r', { noremap = true, silent = true })
--- Left
---vim.api.nvim_set_keymap('n', 'h',  't', { noremap = true, silent = true })
--- Right
---vim.api.nvim_set_keymap('n', 'l',  'n', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader><up>', '<C-w><up>') -- sample "map"
+vim.keymap.set('n', '<leader><down>', '<C-w><down>')
+vim.keymap.set('n', '<leader><left>', '<C-w><left>')
+vim.keymap.set('n', '<leader><right>', '<C-w><right>')
 
 -- disable netrw at the very start of your init.lua
 -- Required by nvim-tree
